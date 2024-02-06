@@ -49,75 +49,68 @@ blueprint:
         entity:
           domain: input_text
     # inputs for custom actions
-    action_button_1_short:
+    action_button_1_short_release:
       name: (Optional) One dot button short press
-      description: Action to run on short one dot button press.
+      description: Action to run after one dot button short press.
       default: []
       selector:
         action:
-    action_button_1_long:
+    action_button_1_long_press:
       name: (Optional) One dot button long press
       description: Action to run on long one dot button press.
       default: []
       selector:
         action:
-    action_button_1_short_release:
-      name: (Optional) One dot button release
-      description: Action to run on one dot button release after short press.
-      default: []
+    button_1_long_max_loop_repeats:
+      name: (Optional) One dot button long press - Maximum loop repeats
+      description: >-
+        Maximum number of repeats for the custom action, when looping is enabled.
+        Use it as a safety limit to prevent an endless loop in case the corresponding stop event is not received.
+      default: 500
       selector:
-        action:
-    action_button_1_long_release:
-      name: (Optional) One dot long button release
-      description: Action to run on one dot button release after long press.
-      default: []
-      selector:
-        action:
-    action_button_1_double_press:
-      name: (Optional) One dot button double press
-      description: Action to run on double one dot button press.
-      default: []
-      selector:
-        action:
-    action_button_2_short:
-      name: (Optional) Two dot button short press
-      description: Action to run on short two dot button press.
-      default: []
-      selector:
-        action:
-    action_button_2_long:
-      name: (Optional) Two dot button long press
-      description: Action to run on long two dot button press.
-      default: []
-      selector:
-        action:
-    action_button_2_short_release:
-      name: (Optional) Two dot short button release
-      description: Action to run on two dot button release after short press.
-      default: []
-      selector:
-        action:
-    action_button_2_long_release:
-      name: (Optional) Two dot long button release
-      description: Action to run on two dot button release after long press.
-      default: []
-      selector:
-        action:
-    action_button_2_double_press:
-      name: (Optional) Two dot button double press
-      description: Action to run on double two dot button press.
-      default: []
-      selector:
-        action:
-    # inputs for looping custom actions on long button press events until the corresponding release event is received
+        number:
+          min: 1
+          max: 5000
+          mode: slider
+          step: 1
     button_1_long_loop:
       name: (Optional) One dot button long press - loop until release
       description: Loop the one dot button action until the button is released.
       default: false
       selector:
         boolean:
-    button_1_long_max_loop_repeats:
-      name: (Optional) One dot button long press - Maximum loop repeats
+    action_button_1_long_release:
+      name: (Optional) One dot long button release
+      description: Action to run after one dot button long release.
+      default: []
+      selector:
+        action:
+    action_button_1_double_press:
+      name: (Optional) One dot button double press
+      description: Action to run after one dot button double press.
+      default: []
+      selector:
+        action:
+    action_button_1_initial_press:
+      name: (Optional) One dot button initial press
+      description: Action to run on one dot button initial press. Note that this is fired on each action!
+      default: []
+      selector:
+        action:
+    action_button_2_short_release:
+      name: (Optional) Two dot button short press
+      description: Action to run after two dot button short press.
+      default: []
+      selector:
+        action:
+    action_button_2_long_press:
+      name: (Optional) Two dot button long press
+      description: Action to run on long two dot button press.
+      default: []
+      selector:
+        action:
+    button_2_long_max_loop_repeats:
+      name: (Optional) Two dot button long press - Maximum loop repeats
       description: >-
         Maximum number of repeats for the custom action, when looping is enabled.
         Use it as a safety limit to prevent an endless loop in case the corresponding stop event is not received.
@@ -134,18 +127,24 @@ blueprint:
       default: false
       selector:
         boolean:
-    button_2_long_max_loop_repeats:
-      name: (Optional) Two dot button long press - Maximum loop repeats
-      description: >-
-        Maximum number of repeats for the custom action, when looping is enabled.
-        Use it as a safety limit to prevent an endless loop in case the corresponding stop event is not received.
-      default: 500
+    action_button_2_long_release:
+      name: (Optional) Two dot long button release
+      description: Action to run after two dot button long press release.
+      default: []
       selector:
-        number:
-          min: 1
-          max: 5000
-          mode: slider
-          step: 1
+        action:
+    action_button_2_double_press:
+      name: (Optional) Two dot button double press
+      description: Action to run after two dot button double press.
+      default: []
+      selector:
+        action:
+    action_button_2_initial_press:
+      name: (Optional) Two dot button initial press
+      description: Action to run on two dot button initial press. Note that this is fired on each action!
+      default: []
+      selector:
+        action:
     helper_debounce_delay:
       name: (Optional) Helper - Debounce delay
       description:
@@ -176,47 +175,47 @@ variables:
   # mapping between actions and integrations
   actions_mapping:
     deconz:
-      button_1_short: ['1000']
-      button_1_long: ['1001']
+      button_1_initial_press: ['1000']
+      button_1_long_press: ['1001']
       button_1_short_release: ['1002']
       button_1_long_release: ['1003']
-      button_1_double_press: ['1005']
-      button_2_short: ['2000']
-      button_2_long: ['2001']
+      button_1_double: ['1005']
+      button_2_initial_press: ['2000']
+      button_2_long_press: ['2001']
       button_2_short_release: ['2002']
       button_2_long_release: ['2003']
       button_2_double_press: ['2005']
     zha:
-      button_1_short: ['1_initial_press']
-      button_1_long: ['1_long_press']
+      button_1_initial_press: ['1_initial_press']
+      button_1_long_press: ['1_long_press']
       button_1_short_release: ['1_short_release']
       button_1_long_release: ['1_long_release']
       button_1_double_press: ['1_double_press']
-      button_2_short: ['2_initial_press']
-      button_2_long: ['2_long_press']
+      button_2_initial_press: ['2_initial_press']
+      button_2_long_press: ['2_long_press']
       button_2_short_release: ['2_short_release']
       button_2_long_release: ['2_long_release']
       button_2_double_press: ['2_double_press']
     zigbee2mqtt:
-      button_1_short: ['1_initial_press']
-      button_1_long: ['1_long_press']
+      button_1_initial_press: ['1_initial_press']
+      button_1_long_press: ['1_long_press']
       button_1_short_release: ['1_short_release']
       button_1_long_release: ['1_long_release']
       button_1_double_press: ['1_double_press']
-      button_2_short: ['2_initial_press']
-      button_2_long: ['2_long_press']
+      button_2_initial_press: ['2_initial_press']
+      button_2_long_press: ['2_long_press']
       button_2_short_release: ['2_short_release']
       button_2_long_release: ['2_long_release']
       button_2_double_press: ['2_double_press']
   # pre-choose actions for buttons based on configured integration
   # no need to perform this task at automation runtime
-  button_1_short: '{{ actions_mapping[integration_id]["button_1_short"] }}'
-  button_1_long: '{{ actions_mapping[integration_id]["button_1_long"] }}'
+  button_1_initial_press: '{{ actions_mapping[integration_id]["button_1_initial_press"] }}'
+  button_1_long_press: '{{ actions_mapping[integration_id]["button_1_long_press"] }}'
   button_1_short_release: '{{ actions_mapping[integration_id]["button_1_short_release"] }}'
   button_1_long_release: '{{ actions_mapping[integration_id]["button_1_long_release"] }}'
   button_1_double_press: '{{ actions_mapping[integration_id]["button_1_double_press"] }}'
-  button_2_short: '{{ actions_mapping[integration_id]["button_2_short"] }}'
-  button_2_long: '{{ actions_mapping[integration_id]["button_2_long"] }}'
+  button_2_initial_press: '{{ actions_mapping[integration_id]["button_2_initial_press"] }}'
+  button_2_long_press: '{{ actions_mapping[integration_id]["button_2_long_press"] }}'
   button_2_short_release: '{{ actions_mapping[integration_id]["button_2_short_release"] }}'
   button_2_long_release: '{{ actions_mapping[integration_id]["button_2_long_release"] }}'
   button_2_double_press: '{{ actions_mapping[integration_id]["button_2_double_press"] }}'
@@ -285,42 +284,42 @@ action:
       value: '{{ {"a":trigger_action,"t":as_timestamp(now())} | to_json }}'
   # choose the sequence to run based on the received button event
   - choose:
-      - conditions: '{{ trigger_action | string in button_1_short }}'
+      - conditions: '{{ trigger_action | string in button_1_initial_press }}'
         sequence:
           - event: ahb_controller_event
             event_data:
               controller: '{{ controller_id }}'
-              action: button_1_short
+              action: button_1_initial_press
           # run the custom action
           - choose:
               - conditions: []
-                sequence: !input action_button_1_short
+                sequence: !input action_button_1_initial_press
       - conditions: '{{ trigger_action | string in button_1_double_press }}'
         sequence:
           - event: ahb_controller_event
             event_data:
               controller: '{{ controller_id }}'
-              action: button_1_double
+              action: button_1_double_press
           # run the custom action
           - choose:
               - conditions: []
                 sequence: !input action_button_1_double_press
-      - conditions: '{{ trigger_action | string in button_1_long }}'
+      - conditions: '{{ trigger_action | string in button_1_long_press }}'
         sequence:
           # fire the event only once before looping the action
           - event: ahb_controller_event
             event_data:
               controller: '{{ controller_id }}'
-              action: button_1_long
+              action: button_1_long_press
           - choose:
               # if looping is enabled, loop the action for a finite number of iterations
               - conditions: '{{ button_1_long_loop }}'
                 sequence:
                   - repeat:
                       while: '{{ repeat.index < button_1_long_max_loop_repeats | int }}'
-                      sequence: !input action_button_1_long
+                      sequence: !input action_button_1_long_press
             # if looping is not enabled run the custom action only once
-            default: !input action_button_1_long
+            default: !input action_button_1_long_press
       - conditions:
           - '{{ trigger_action | string in button_1_short_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
@@ -335,16 +334,16 @@ action:
           - choose:
               - conditions: []
                 sequence: !input action_button_1_short_release
-      - conditions: '{{ trigger_action | string in button_2_short }}'
+      - conditions: '{{ trigger_action | string in button_2_initial_press }}'
         sequence:
           - event: ahb_controller_event
             event_data:
               controller: '{{ controller_id }}'
-              action: button_2_short
+              action: button_2_initial_press
           # run the custom action
           - choose:
               - conditions: []
-                sequence: !input action_button_2_short
+                sequence: !input action_button_2_initial_press
       - conditions:
           - '{{ trigger_action | string in button_1_long_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
@@ -364,27 +363,27 @@ action:
           - event: ahb_controller_event
             event_data:
               controller: '{{ controller_id }}'
-              action: button_2_double
+              action: button_2_double_press
           # run the custom action
           - choose:
               - conditions: []
                 sequence: !input action_button_2_double_press
-      - conditions: '{{ trigger_action | string in button_2_long }}'
+      - conditions: '{{ trigger_action | string in button_2_long_press }}'
         sequence:
           # fire the event only once before looping the action
           - event: ahb_controller_event
             event_data:
               controller: '{{ controller_id }}'
-              action: button_2_long
+              action: button_2_long_press
           - choose:
               # if looping is enabled, loop the action for a finite number of iterations
               - conditions: '{{ button_2_long_loop }}'
                 sequence:
                   - repeat:
                       while: '{{ repeat.index < button_2_long_max_loop_repeats | int }}'
-                      sequence: !input action_button_2_long
+                      sequence: !input action_button_2_long_press
             # if looping is not enabled run the custom action only once
-            default: !input action_button_2_long
+            default: !input action_button_2_long_press
       - conditions:
           - '{{ trigger_action | string in button_2_short_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
