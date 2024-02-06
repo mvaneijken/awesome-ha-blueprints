@@ -66,79 +66,74 @@ This integration provides the entity which must be provided to the blueprint in 
   required
 />
 <Input
-  name='Button 1 short press'
-  description='Action to run on short button 1 press.'
+  name='Button one short press'
+  description='Action to run on short button one press.'
   selector='action'
 />
 <Input
-  name='Button 1 long press'
-  description='Action to run on long button 1 press.'
+  name='Button one long press'
+  description='Action to run on long button one press.'
   selector='action'
 />
 <Input
-  name='Button 1 release'
-  description='Action to run on button 1 release after long press.'
+  name='Button one release'
+  description='Action to run on button one release after long press.'
   selector='action'
 />
 <Input
-  name='Button 1 double press'
-  description='Action to run on double button 1 press.'
+  name='Button one double press'
+  description='Action to run on double button one press.'
   selector='action'
 />
 <Input
-  name='Button 2 short press'
-  description='Action to run on short button 2 press.'
+  name='Button two short press'
+  description='Action to run on short button two press.'
   selector='action'
 />
 <Input
-  name='Button 2 long press'
-  description='Action to run on long button 2 press.'
+  name='Button two long press'
+  description='Action to run on long button two press.'
   selector='action'
 />
 <Input
-  name='Button 2 release'
-  description='Action to run on button 2 release after long press.'
+  name='Button two release'
+  description='Action to run on button two release after long press.'
   selector='action'
 />
 <Input
-  name='Button 2 double press'
-  description='Action to run on double button 2 press.'
+  name='Button two double press'
+  description='Action to run on double button two press.'
   selector='action'
 />
 <Input
-  name='Button 1 long press - loop until release'
-  description='Loop the button 1 action until the button is released.'
+  name='Button one long press - loop until release'
+  description='Loop the button one action until the button is released.'
   selector='boolean'
 />
 <Input
-  name='Button 1 long press - Maximum loop repeats'
+  name='Button one long press - Maximum loop repeats'
   description='Maximum number of repeats for the custom action, when looping is enabled. Use it as a safety limit to prevent an endless loop in case the corresponding stop event is not received.'
   selector='number'
 />
 <Input
-  name='Button 2 long press - loop until release'
-  description='Loop the button 2 action until the button is released.'
+  name='Button two long press - loop until release'
+  description='Loop the button two action until the button is released.'
   selector='boolean'
 />
 <Input
-  name='Button 2 long press - Maximum loop repeats'
+  name='Button two long press - Maximum loop repeats'
   description='Maximum number of repeats for the custom action, when looping is enabled. Use it as a safety limit to prevent an endless loop in case the corresponding stop event is not received.'
   selector='number'
 />
 <Input
-  name='Expose button 1 double press event'
-  description='Choose whether or not to expose the virtual double press event for the button 1. Turn this on if you are providing an action for the button 1 double press event.'
+  name='Expose button one double press event'
+  description='Choose whether or not to expose the virtual double press event for the button one. Turn this on if you are providing an action for the button one double press event.'
   selector='boolean'
 />
 <Input
-  name='Expose button 2 double press event'
-  description='Choose whether or not to expose the virtual double press event for the button 2. Turn this on if you are providing an action for the button 2 double press event.'
+  name='Expose button two double press event'
+  description='Choose whether or not to expose the virtual double press event for the button two. Turn this on if you are providing an action for the button two double press event.'
   selector='boolean'
-/>
-<Input
-  name='Helper - Double Press delay'
-  description='Max delay between the first and the second button press for the double press event. Provide a value only if you are using a double press action. Increase this value if you notice that the double press action is not triggered properly.'
-  selector='number'
 />
 <Input
   name='Helper - Debounce delay'
@@ -159,21 +154,21 @@ This Hook blueprint allows to build a controller-based automation to control a l
 
 #### Default Mapping
 
-- Button 1 short press -> Turn on
-- Button 1 long press -> Brightness up (continuous, until release)
-- Button 1 double press -> Color up
-- Button 2 short press -> Turn off
-- Button 2 long press -> Brightness down (continuous, until release)
-- Button 2 double press -> Color down
+- Button one short press -> Turn on
+- Button one long press -> Brightness up (continuous, until release)
+- Button one double press -> Color up
+- Button two short press -> Turn off
+- Button two long press -> Brightness down (continuous, until release)
+- Button two double press -> Color down
 
 #### Mapping #2
 
-- Button 1 short press -> Brightness up
-- Button 1 long press -> Brightness up (continuous, until release)
-- Button 1 double press -> Turn on
-- Button 2 short press -> Brightness down
-- Button 2 long press -> Brightness down (continuous, until release)
-- Button 2 double press -> Turn off
+- Button one short press -> Brightness up
+- Button one long press -> Brightness up (continuous, until release)
+- Button one double press -> Turn on
+- Button two short press -> Brightness down
+- Button two long press -> Brightness down (continuous, until release)
+- Button two double press -> Turn off
 
 [Light Hook docs](/docs/blueprints/hooks/light)
 
@@ -183,12 +178,12 @@ This Hook blueprint allows to build a controller-based automation to control a m
 
 #### Default Mapping
 
-- Button 1 short press -> Volume up
-- Button 1 long press -> Volume up (continuous, until release)
-- Button 1 double press -> Next track
-- Button 2 short press -> Volume down
-- Button 2 long press -> Volume down
-- Button 2 double press -> Play/Pause
+- Button one short press -> Volume up
+- Button one long press -> Volume up (continuous, until release)
+- Button one double press -> Next track
+- Button two short press -> Volume down
+- Button two long press -> Volume down
+- Button two double press -> Play/Pause
 
 [Media Player Hook docs](/docs/blueprints/hooks/media_player)
 
@@ -198,11 +193,11 @@ This Hook blueprint allows to build a controller-based automation to control a c
 
 #### Default Mapping
 
-- Button 1 short press -> Open cover
-- Button 1 long press -> Open the cover tilt
-- Button 2 short press -> Close cover
-- Button 2 long press -> Close the cover tilt
-- Button 2 double press -> Stop cover and cover tilt
+- Button one short press -> Open cover
+- Button one long press -> Open the cover tilt
+- Button two short press -> Close cover
+- Button two long press -> Close the cover tilt
+- Button two double press -> Stop cover and cover tilt
 
 [Cover Hook docs](/docs/blueprints/hooks/cover)
 
