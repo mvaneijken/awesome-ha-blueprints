@@ -1,10 +1,10 @@
 # Blueprint metadata
 blueprint:
-  name: Controller - IKEA E2213 SOMRIG On/Off Switch & Dimmer
+  name: Controller - IKEA E2213 SOMRIG Shortcut Button
   description: |
-    # Controller - IKEA E2213 SOMRIG On/Off Switch & Dimmer
+    # Controller - IKEA E2213 SOMRIG Shortcut Button
 
-    Controller automation for executing any kind of action triggered by the provided IKEA E2213 SOMRIG On/Off Switch & Dimmer. Allows to optionally loop an action on a button long press.
+    Controller automation for executing any kind of action triggered by the provided IKEA E2213 SOMRIG Shortcut Button. Allows to optionally loop an action on a button long press.
     Supports deCONZ, ZHA, Zigbee2MQTT.
 
     Automations created with this blueprint can be connected with one or more [Hooks](https://epmatt.github.io/awesome-ha-blueprints/docs/blueprints/hooks) supported by this controller.
