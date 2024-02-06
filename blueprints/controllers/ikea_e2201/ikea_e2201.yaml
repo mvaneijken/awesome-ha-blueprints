@@ -61,7 +61,7 @@ blueprint:
       default: []
       selector:
         action:
-    action_button_on_release:
+    action_button_on_long_release:
       name: (Optional) On button release
       description: Action to run on on button release after long press.
       default: []
@@ -85,7 +85,7 @@ blueprint:
       default: []
       selector:
         action:
-    action_button_off_release:
+    action_button_off_long_release:
       name: (Optional) Off button release
       description: Action to run on off button release after long press.
       default: []
@@ -195,32 +195,32 @@ variables:
     deconz:
       button_on_short: ['1002']
       button_on_long: ['1001']
-      button_on_release: ['1003']
+      button_on_long_release: ['1003']
       button_off_short: ['2002']
       button_off_long: ['2001']
-      button_off_release: ['2003']
+      button_off_long_release: ['2003']
     zha:
       button_on_short: ['on']
       button_on_long: [move_with_on_off_0_83]
-      button_on_release: [stop]
+      button_on_long_release: [stop]
       button_off_short: ['off']
       button_off_long: [move_1_83]
-      button_off_release: [stop]
+      button_off_long_release: [stop]
     zigbee2mqtt:
       button_on_short: ['on']
-      button_on_long: [brightness_move_up]
-      button_on_release: [brightness_stop]
+      button_on_long: ['brightness_move_up']
+      button_on_long_release: ['brightness_stop']
       button_off_short: ['off']
-      button_off_long: [brightness_move_down]
-      button_off_release: [brightness_stop]
+      button_off_long: ['brightness_move_down']
+      button_off_long_release: ['brightness_stop']
   # pre-choose actions for buttons based on configured integration
   # no need to perform this task at automation runtime
   button_on_short: '{{ actions_mapping[integration_id]["button_on_short"] }}'
   button_on_long: '{{ actions_mapping[integration_id]["button_on_long"] }}'
-  button_on_release: '{{ actions_mapping[integration_id]["button_on_release"] }}'
+  button_on_long_release: '{{ actions_mapping[integration_id]["button_on_long_release"] }}'
   button_off_short: '{{ actions_mapping[integration_id]["button_off_short"] }}'
   button_off_long: '{{ actions_mapping[integration_id]["button_off_long"] }}'
-  button_off_release: '{{ actions_mapping[integration_id]["button_off_release"] }}'
+  button_off_long_release: '{{ actions_mapping[integration_id]["button_off_long_release"] }}'
   # integrations which need to store the previous press event to determine which button was released
   integrations_with_prev_event_storage: [zha, zigbee2mqtt]
   # build data to send within a controller event
@@ -277,8 +277,9 @@ action:
         {%- elif integration_id == "zha" -%}
         {{ trigger.event.data.command }}{{"_" if trigger.event.data.args|length > 0}}{{ trigger.event.data.args|join("_") }}
         {%- endif -%}
-      trigger_delta: '{{ (as_timestamp(now()) - ((states(helper_last_controller_event) | from_json).t if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{((\"a\": \".*\"|\"t\": \d+\.\d+)(, )?){2}\}$")) else as_timestamp("1970-01-01 00:00:00"))) * 1000 }}'
-      last_controller_event: '{{ (states(helper_last_controller_event) | from_json).a if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{((\"a\": \".*\"|\"t\": \d+\.\d+)(, )?){2}\}$")) else "" }}'
+      trigger_delta: '{{ (as_timestamp(now()) - ((states(helper_last_controller_event) | from_json).t if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{\"a\":\"(.*)\",\"t\":.(\d+\.\d+)\}$")) else as_timestamp("1970-01-01 00:00:00"))) * 1000 }}'
+      last_controller_event: '{{ (states(helper_last_controller_event) | from_json).a if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{\"a\":\"(.*)\",\"t\":.(\d+\.\d+)\}$")) else "" }}'
+
   # update helper
   - service: input_text.set_value
     data:
@@ -356,7 +357,7 @@ action:
             # if looping is not enabled run the custom action only once
             default: !input action_button_on_long
       - conditions:
-          - '{{ trigger_action | string in button_on_release }}'
+          - '{{ trigger_action | string in button_on_long_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
           - '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in button_on_long }}'
         sequence:
@@ -364,11 +365,11 @@ action:
           - event: ahb_controller_event
             event_data:
               controller: '{{ controller_id }}'
-              action: button_on_release
+              action: button_on_long_release
           # run the custom action
           - choose:
               - conditions: []
-                sequence: !input action_button_on_release
+                sequence: !input action_button_on_long_release
       - conditions: '{{ trigger_action | string in button_off_short }}'
         sequence:
           - choose:
@@ -439,7 +440,7 @@ action:
             # if looping is not enabled run the custom action only once
             default: !input action_button_off_long
       - conditions:
-          - '{{ trigger_action | string in button_off_release }}'
+          - '{{ trigger_action | string in button_off_long_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
           - '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in button_off_long }}'
         sequence:
@@ -447,8 +448,8 @@ action:
           - event: ahb_controller_event
             event_data:
               controller: '{{ controller_id }}'
-              action: button_off_release
+              action: button_off_long_release
           # run the custom action
           - choose:
               - conditions: []
-                sequence: !input action_button_off_release
+                sequence: !input action_button_off_long_release
