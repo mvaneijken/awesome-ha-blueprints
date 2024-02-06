@@ -44,6 +44,8 @@ blueprint:
             - IKEA E1744 SYMFONISK Rotary Remote
             - IKEA E1766 TRÅDFRI Open/Close Remote
             - IKEA E1812 TRÅDFRI Shortcut button
+            - IKEA E2201 SOMRIG Shortcut button
+            - IKEA E2213 RODRET On/Off Switch & Dimmer
             - IKEA E2001/E2002 STYRBAR Remote control
             - IKEA ICTC-G-1 TRÅDFRI wireless dimmer
             - OSRAM AC025XX00NJ SMART+ Switch Mini
@@ -129,6 +131,18 @@ variables:
       volume_down_repeat: button_down_long
       prev_track: button_left_short
       next_track: button_right_short
+    IKEA E2201 RODRET On/Off Switch & Dimmer:
+      volume_up: button_on_short
+      volume_up_repeat: button_on_long
+      next_track: button_on_double
+      volume_down: button_off_long
+      play_pause: button_off_double
+    IKEA E2213 SOMRIG Shortcut button:
+      volume_up: button_1_short
+      volume_up_repeat: button_1_long
+      next_track: button_1_double
+      volume_down: button_2_long
+      play_pause: button_2_double
     IKEA ICTC-G-1 TRÅDFRI wireless dimmer:
       volume_down_repeat: rotate_left
       volume_up_repeat: rotate_right
