@@ -324,7 +324,7 @@ action:
       - conditions:
           - '{{ trigger_action | string in botton_1_short_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
-          #- '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in botton_1_long }}'
+          # - '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in botton_1_long }}'
         sequence:
           # fire the event
           - event: ahb_controller_event
@@ -348,7 +348,7 @@ action:
       - conditions:
           - '{{ trigger_action | string in botton_1_long_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
-          #- '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in botton_1_long }}'
+          # - '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in botton_1_long }}'
         sequence:
           # fire the event
           - event: ahb_controller_event
@@ -388,7 +388,7 @@ action:
       - conditions:
           - '{{ trigger_action | string in botton_2_short_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
-          #- '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in botton_2_long }}'
+          # - '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in botton_2_long }}'
         sequence:
           # fire the event
           - event: ahb_controller_event
@@ -402,7 +402,7 @@ action:
       - conditions:
           - '{{ trigger_action | string in botton_2_long_release }}'
           # for integrations which need to store the last controller event, need to check the previous button event, stored in the provided input_text
-          #- '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in botton_2_long }}'
+          # - '{{ not integration_id in integrations_with_prev_event_storage or last_controller_event | string in botton_2_long }}'
         sequence:
           # fire the event
           - event: ahb_controller_event
